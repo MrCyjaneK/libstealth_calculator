@@ -3,7 +3,6 @@ import 'package:libstealth_calculator/screens/home.dart';
 
 void main() {
   runApp(StealthHomeScreenCalculator(
-    home: const MyApp(),
     onSecretGiven: (String secret) {
       if (!secret.endsWith("123")) {
         runApp(const MyApp());

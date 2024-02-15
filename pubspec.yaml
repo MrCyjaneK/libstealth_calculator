@@ -1,7 +1,8 @@
 name: libstealth_calculator
 description: "A new Flutter package project."
 version: 0.0.1
-homepage:
+repository: https://git.mrcyjanek.net/mrcyjanek/libstealth_calculator
+publish_to: https://git.mrcyjanek.net/api/packages/mrcyjanek/pub
 
 environment:
   sdk: '>=3.2.3 <4.0.0'

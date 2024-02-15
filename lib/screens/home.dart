@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:libstealth_calculator/screens/calculator_view.dart';
 
 class StealthHomeScreenCalculator extends StatelessWidget {
-  final Widget home;
-  const StealthHomeScreenCalculator(
-      {super.key, required this.home, required this.onSecretGiven});
+  const StealthHomeScreenCalculator({super.key, required this.onSecretGiven});
   final void Function(String secret) onSecretGiven;
 
   // This widget is the root of your application.

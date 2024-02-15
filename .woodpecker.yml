@@ -1,15 +1,13 @@
-labels:
-  platform: linux/amd64
-
+clone:
+  git:
+    image: woodpeckerci/plugin-git
+    settings:
+      partial: false
 steps:
   - name: make version
     image: dart:stable
     commands:
       - ./make_version.sh
-  - name: dart analyze
-    image: dart:stable
-    commands:
-      - dart analyze
   - name: pub release
     image: dart:stable
     secrets: [ PAT_SECRET_PACKAGE ]
