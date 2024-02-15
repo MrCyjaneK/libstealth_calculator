@@ -1,0 +1,18 @@
+labels:
+  platform: linux/amd64
+
+steps:
+  - name: make version
+    image: dart:stable
+    commands:
+      - ./make_version.sh
+  - name: dart analyze
+    image: dart:stable
+    commands:
+      - dart analyze
+  - name: pub release
+    image: dart:stable
+    secrets: [ PAT_SECRET_PACKAGE ]
+    commands:
+      - dart pub token add https://git.mrcyjanek.net/api/packages/mrcyjanek/pub/ --env-var=PAT_SECRET_PACKAGE
+      - dart pub publish --skip-validation
