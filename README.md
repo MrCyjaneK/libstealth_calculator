@@ -26,4 +26,59 @@ This one is actually really clever and good (it is the inspiration behind `libst
 
 This however extends a bit from this repo - `libstealth_calculator` provides an ordinary calculator, that will be published to Google Play under a ordinary package name so not only it will look like a calculator at a first glance - but it will also **be** a calculator - just with a twist.
 
-Note that this is just a very early draft.
+Note that this is just a very early draft and a PoC.
+
+
+# Implementation
+
+## Add `libstealth_calculator` package
+
+```bash
+$ dart pub add libstealth_calculator:0.0.1 --hosted-url=https://git.mrcyjanek.net/api/packages/mrcyjanek/pub/
+```
+
+## Patch `AndroidManifest.xml`
+
+In `<manifest><application>` set `android:label` and `android:name` to the values visible below. 
+
+```xml
+android:label="@string/app_name"
+android:icon="${appIcon}"
+```
+
+## Patch `android/app/build.gradle`
+
+in `android {` block add the following code:
+
+```gradle
+flavorDimensions "default"
+
+productFlavors {
+    clean {
+        dimension "default"
+        resValue "string", "app_name", "xmruw" # <--- normal app name
+        applicationId "net.mrcyjanek.xmruw" # <--- normal package name
+        manifestPlaceholders = [
+            appIcon: "@mipmap/ic_launcher" # <--- normal app icon
+        ]
+    }
+    calc {
+        dimension "default" 
+        resValue "string", "app_name", "Calculator" # <--- stealth app name
+        applicationId "net.mrcyjanek.calculator" # <--- stealth package name (feel free to use the same. You may run into conflicts tho)
+        manifestPlaceholders = [
+            appIcon: "@mipmap/ic_launcher_calc" # <--- stealth app icon
+        ]
+    }
+}
+```
+
+## Build
+
+Now to build the project you need to build it twice...
+
+
+```bash
+$ flutter build apk --flavor clean --dart-define=libstealth_calculator=false # <--- build clean
+$ flutter build apk --flavor calc  --dart-define=libstealth_calculator=true  # <--- build stealth mode
+```
