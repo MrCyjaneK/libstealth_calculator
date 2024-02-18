@@ -15,6 +15,13 @@ class StealthHomeScreenCalculator extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
+      builder: (BuildContext context, Widget? child) {
+        return MediaQuery(
+          data: MediaQuery.of(context)
+              .copyWith(textScaler: const TextScaler.linear(1.0)),
+          child: child ?? const Text(".?"),
+        );
+      },
       home: CalculatorView(onSecretGiven: onSecretGiven),
     );
   }
