@@ -8,7 +8,7 @@ jobs:
       fail-fast: false
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           repository: 'mrcyjanek/unnamed_monero_wallet'
           fetch-depth: 0
@@ -51,7 +51,7 @@ jobs:
       fail-fast: false
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           repository: 'mrcyjanek/unnamed_monero_wallet'
           fetch-depth: 0
@@ -95,7 +95,7 @@ jobs:
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           repository: 'mrcyjanek/unnamed_monero_wallet'
           fetch-depth: 0
